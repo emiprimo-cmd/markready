@@ -143,7 +143,7 @@ convertBtn.addEventListener('click', async () => {
       const formData = new FormData();
       formData.append('file', item.file);
 
-      const response = await fetch('http://127.0.0.1:8000/convert', {
+      const response = await fetch('https://markready-api.onrender.com/convert', {
         method: 'POST',
         body: formData
       });
