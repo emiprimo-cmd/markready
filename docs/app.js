@@ -247,3 +247,34 @@ modalClose.addEventListener('click', () => {
 modalOverlay.addEventListener('click', e => {
   if (e.target === modalOverlay) modalOverlay.style.display = 'none';
 });
+// ─── SERVER WAKE UP CHECK ─────────────────────────────
+async function checkServer() {
+  const banner = document.createElement('div');
+  banner.id = 'serverBanner';
+  banner.style.cssText = `
+    position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+    background: #FAEEDA; border: 1px solid #EF9F27; color: #854F0B;
+    padding: 10px 20px; border-radius: 10px; font-size: 13px;
+    font-family: var(--sans); z-index: 200; text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1); display: none;
+  `;
+  banner.textContent = '⏳ Server is waking up — this may take up to 60 seconds on first use...';
+  document.body.appendChild(banner);
+
+  const timeout = setTimeout(() => {
+    banner.style.display = 'block';
+  }, 3000);
+
+  try {
+    await fetch('https://markready-api.onrender.com');
+    clearTimeout(timeout);
+    banner.style.display = 'none';
+  } catch (err) {
+    clearTimeout(timeout);
+    banner.textContent = '⚠️ Server is unavailable. Please try again in a moment.';
+    banner.style.display = 'block';
+    setTimeout(() => banner.style.display = 'none', 6000);
+  }
+}
+
+checkServer();
