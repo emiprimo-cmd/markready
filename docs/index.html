@@ -77,9 +77,12 @@
       <!-- MARKDOWN PREVIEW -->
       <div class="panel">
         <div class="panel-header">
-          <span class="panel-title">Markdown preview</span>
-          <span class="panel-hint" id="previewFileName">—</span>
-        </div>
+  <span class="panel-title">Markdown preview</span>
+  <div style="display:flex; align-items:center; gap:10px;">
+    <span class="panel-hint" id="previewFileName">—</span>
+    <button class="copy-btn" id="copyBtn" style="display:none;">Copy</button>
+  </div>
+</div>
         <div class="panel-body">
           <pre class="md-preview" id="mdPreview">Select a file to preview its markdown output...</pre>
         </div>

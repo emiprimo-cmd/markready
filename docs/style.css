@@ -487,3 +487,18 @@ body {
   transition: width 0.3s ease;
 }
 
+/* ─── COPY BUTTON ───────────────────────────────────── */
+.copy-btn {
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--teal-mid);
+  background: var(--teal-light);
+  color: var(--teal-dark);
+  cursor: pointer;
+  font-family: var(--sans);
+  transition: background 0.15s;
+}
+
+.copy-btn:hover { background: var(--teal-mid); }
+.copy-btn.copied { background: var(--teal); color: white; border-color: var(--teal); }

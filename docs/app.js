@@ -23,6 +23,7 @@ const modalClose      = document.getElementById('modalClose');
 const progressCount   = document.getElementById('progressCount');
 const progressTrack   = document.getElementById('progressTrack');
 const progressFill    = document.getElementById('progressFill');
+const copyBtn = document.getElementById('copyBtn');
 
 // ─── DRAG & DROP ──────────────────────────────────────
 dropZone.addEventListener('dragover', e => {
@@ -109,6 +110,7 @@ function selectFile(index) {
   const item = state.files[index];
   previewFileName.textContent = item.name;
   mdPreview.textContent = item.markdown || '— not yet converted —';
+  copyBtn.style.display = item.markdown ? 'block' : 'none';
 }
 
 // ─── SHOW PANELS ──────────────────────────────────────
@@ -295,3 +297,22 @@ async function checkServer() {
 }
 
 checkServer();
+
+// ─── COPY TO CLIPBOARD ────────────────────────────────
+copyBtn.addEventListener('click', async () => {
+  const item = state.files[state.activeIndex];
+  if (!item || !item.markdown) return;
+
+  try {
+    await navigator.clipboard.writeText(item.markdown);
+    copyBtn.textContent = 'Copied!';
+    copyBtn.classList.add('copied');
+    setTimeout(() => {
+      copyBtn.textContent = 'Copy';
+      copyBtn.classList.remove('copied');
+    }, 2000);
+  } catch (err) {
+    copyBtn.textContent = 'Error';
+    setTimeout(() => copyBtn.textContent = 'Copy', 2000);
+  }
+});
