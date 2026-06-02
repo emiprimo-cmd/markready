@@ -152,7 +152,7 @@ convertBtn.addEventListener('click', async () => {
       formData.append('file', item.file);
 
       const controller = new AbortController();
-      const timeout = setTimeout(() => controller.abort(), 30000);
+      const timeout = setTimeout(() => controller.abort(), 60000);
 
       const response = await fetch('https://markready-api.onrender.com/convert', {
         method: 'POST',
