@@ -27,7 +27,7 @@ SUPPORTED = {
     ".pptx": convert_pptx,
 }
 
-@app.get("/")
+@app.api_route("/", methods=["GET", "HEAD"])
 def root():
     return {"status": "MarkReady API is running"}
 

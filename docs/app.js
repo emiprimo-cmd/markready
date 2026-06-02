@@ -151,10 +151,16 @@ convertBtn.addEventListener('click', async () => {
       const formData = new FormData();
       formData.append('file', item.file);
 
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 30000);
+
       const response = await fetch('https://markready-api.onrender.com/convert', {
         method: 'POST',
-        body: formData
-      });
+        body: formData,
+        signal: controller.signal
+});
+
+clearTimeout(timeout);
 
       if (!response.ok) throw new Error(`Server error: ${response.status}`);
 
@@ -162,11 +168,14 @@ convertBtn.addEventListener('click', async () => {
       item.markdown = data.markdown;
       item.status = 'done';
 
-    } catch (err) {
-      item.status = 'error';
-      item.markdown = `Error: ${err.message}`;
-      console.error(err);
-    }
+} catch (err) {
+  item.status = 'error';
+  item.markdown = err.name === 'AbortError'
+    ? 'Error: File too large for the current server. Try a smaller file or wait for the desktop version.'
+    : `Error: ${err.message}`;
+  console.error(err);
+}
+ 
 
     completed++;
     const pct = Math.round((completed / total) * 100);
