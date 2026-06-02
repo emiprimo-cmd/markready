@@ -38,8 +38,11 @@ async def convert(file: UploadFile = File(...)):
     if ext not in SUPPORTED:
         raise HTTPException(status_code=400, detail=f"Unsupported format: {ext}")
 
-    # Save upload to a temp file
+    MAX_SIZE = 20 * 1024 * 1024
     contents = await file.read()
+    if len(contents) > MAX_SIZE:
+        raise HTTPException(status_code=413, detail="File too large. Maximum size is 20MB.")
+
     with tempfile.NamedTemporaryFile(delete=False, suffix=ext) as tmp:
         tmp.write(contents)
         tmp_path = tmp.name
@@ -49,6 +52,6 @@ async def convert(file: UploadFile = File(...)):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Conversion failed: {str(e)}")
     finally:
-        os.unlink(tmp_path)  # clean up temp file
+        os.unlink(tmp_path)
 
     return {"filename": file.filename, "markdown": markdown}

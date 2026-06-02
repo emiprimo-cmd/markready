@@ -50,6 +50,14 @@ fileInput.addEventListener('change', () => {
 // ─── FILE HANDLING ────────────────────────────────────
 function handleFiles(newFiles) {
   const allowed = ['.pdf', '.docx', '.pptx'];
+
+  const oversized = newFiles.filter(f => f.size > 20 * 1024 * 1024);
+  if (oversized.length > 0) {
+    const names = oversized.map(f => f.name).join(', ');
+    showStatus(`⚠️ File too large (max 20MB): ${names}`, 'error');
+    return;
+  }
+
   const valid = newFiles.filter(f => {
     const ext = '.' + f.name.split('.').pop().toLowerCase();
     return allowed.includes(ext);
