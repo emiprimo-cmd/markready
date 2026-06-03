@@ -505,19 +505,19 @@ body {
 
 /* ─── DARK MODE ─────────────────────────────────────── */
 .theme-btn {
-  background: none;
-  border: 0.5px solid var(--border);
+  background: var(--text);
+  border: none;
   border-radius: var(--radius);
-  padding: 6px 8px;
+  padding: 6px 9px;
   cursor: pointer;
-  color: var(--text-mid);
-  font-size: 16px;
+  color: var(--bg);
+  font-size: 17px;
   display: flex;
   align-items: center;
   transition: background 0.15s;
 }
 
-.theme-btn:hover { background: var(--surface); }
+.theme-btn:hover { opacity: 0.85; }
 
 body.dark {
   --bg:        #0F1010;
