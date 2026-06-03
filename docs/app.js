@@ -111,7 +111,50 @@ function selectFile(index) {
   previewFileName.textContent = item.name;
   mdPreview.textContent = item.markdown || '— not yet converted —';
   copyBtn.style.display = item.markdown ? 'block' : 'none';
+
+  // Token counter
+  const existing = document.getElementById('tokenCounter');
+  if (existing) existing.remove();
+
+  if (item.markdown && item.file) {
+    const originalTokens = Math.round(item.file.size / 4);
+    const markdownTokens = Math.round(item.markdown.length / 4);
+    const saved = Math.round((1 - markdownTokens / originalTokens) * 100);
+
+    const counter = document.createElement('div');
+    counter.id = 'tokenCounter';
+    counter.style.cssText = `
+      background: #E1F5EE; border: 0.5px solid #9FE1CB;
+      border-radius: 8px; padding: 12px 16px;
+      display: flex; align-items: center; gap: 16px;
+      margin-top: 10px; flex-wrap: wrap;
+      font-family: var(--sans);
+    `;
+    counter.innerHTML = `
+      <i class="ti ti-bolt" style="font-size:18px; color:#0F6E56;" aria-hidden="true"></i>
+      <div style="display:flex; gap:20px; flex:1; flex-wrap:wrap; align-items:center;">
+        <div style="text-align:center;">
+          <div style="font-size:11px; color:#0F6E56; margin-bottom:2px;">Original</div>
+          <div style="font-size:15px; font-weight:500; color:#085041;">~${originalTokens.toLocaleString()} tokens</div>
+        </div>
+        <div style="color:#0F6E56; font-size:16px;">→</div>
+        <div style="text-align:center;">
+          <div style="font-size:11px; color:#0F6E56; margin-bottom:2px;">Markdown</div>
+          <div style="font-size:15px; font-weight:500; color:#085041;">~${markdownTokens.toLocaleString()} tokens</div>
+        </div>
+        <div style="color:#0F6E56; font-size:16px;">→</div>
+        <div style="text-align:center;">
+          <div style="font-size:11px; color:#0F6E56; margin-bottom:2px;">Saved</div>
+          <div style="font-size:16px; font-weight:500; color:#085041;">${saved}% <span style="font-size:12px;">fewer tokens</span></div>
+        </div>
+      </div>
+    `;
+
+    const panelRight = document.querySelector('.panels .panel:last-child');
+    panelRight.appendChild(counter);
+  }
 }
+
 
 // ─── SHOW PANELS ──────────────────────────────────────
 function showPanels() {
