@@ -359,3 +359,21 @@ copyBtn.addEventListener('click', async () => {
     setTimeout(() => copyBtn.textContent = 'Copy', 2000);
   }
 });
+
+// ─── DARK MODE TOGGLE ─────────────────────────────────
+const themeBtn  = document.getElementById('themeBtn');
+const themeIcon = document.getElementById('themeIcon');
+
+function applyTheme(dark) {
+  document.body.classList.toggle('dark', dark);
+  themeIcon.className = dark ? 'ti ti-moon' : 'ti ti-sun';
+  localStorage.setItem('markready-theme', dark ? 'dark' : 'light');
+}
+
+themeBtn.addEventListener('click', () => {
+  applyTheme(!document.body.classList.contains('dark'));
+});
+
+// Load saved preference
+const saved = localStorage.getItem('markready-theme');
+if (saved === 'dark') applyTheme(true);

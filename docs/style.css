@@ -502,3 +502,41 @@ body {
 
 .copy-btn:hover { background: var(--teal-mid); }
 .copy-btn.copied { background: var(--teal); color: white; border-color: var(--teal); }
+
+/* ─── DARK MODE ─────────────────────────────────────── */
+.theme-btn {
+  background: none;
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 6px 8px;
+  cursor: pointer;
+  color: var(--text-mid);
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  transition: background 0.15s;
+}
+
+.theme-btn:hover { background: var(--surface); }
+
+body.dark {
+  --bg:        #0F1010;
+  --surface:   #1A1B1B;
+  --border:    #2A2B2B;
+  --text:      #F0EFEB;
+  --text-mid:  #A8A8A2;
+  --text-soft: #666662;
+}
+
+body.dark .panel,
+body.dark .modal { background: #1A1B1B; }
+
+body.dark .drop-zone { background: var(--surface); }
+body.dark .drop-zone:hover { background: #0F2E22; }
+body.dark .value-card { background: var(--surface); }
+body.dark .file-item { background: var(--surface); }
+body.dark .file-item:hover,
+body.dark .file-item.active { background: #0F2E22; }
+body.dark .panel-header { background: var(--surface); }
+body.dark .nav { background: var(--bg); }
+body.dark .footer { background: var(--bg); }
