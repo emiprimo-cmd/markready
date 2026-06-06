@@ -5,3 +5,4 @@ pymupdf4llm
 mammoth
 python-pptx
 markdownify
+slowapi
