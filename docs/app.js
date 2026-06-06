@@ -5,7 +5,7 @@ const state = {
 };
 
 // ─── DOM REFS ─────────────────────────────────────────
-const dropZone        = document.getElementById('dropZone');
+const dropZone        = document.getElementById('converter');
 const fileInput       = document.getElementById('fileInput');
 const panels          = document.getElementById('panels');
 const actions         = document.getElementById('actions');

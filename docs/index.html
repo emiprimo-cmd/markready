@@ -22,6 +22,43 @@
   </button>
 </nav>
 
+<!-- LANDING -->
+<section class="landing">
+  <div class="landing-inner">
+    <div class="landing-badge">Free · No signup · No file storage</div>
+    <h1 class="landing-headline">Your AI reads markdown<br><span class="accent">better than PDF</span></h1>
+    <p class="landing-sub">PDFs carry hidden formatting noise that wastes tokens and confuses AI tools. Markdown is clean, structured, and up to <strong>90% more token-efficient</strong>.</p>
+
+    <div class="landing-compare">
+      <div class="compare-col bad">
+        <div class="compare-label">❌ PDF</div>
+        <div class="compare-content">
+          <span>%PDF-1.4 %%âãÏÓ</span>
+          <span>1 0 obj &lt;&lt;/Type/Catalog&gt;&gt;</span>
+          <span>/Font&lt;&lt;/F1 2 0 R&gt;&gt;</span>
+          <span>BT /F1 12 Tf 100 700 Td</span>
+          <span>(Introduction) Tj ET</span>
+          <span>xref 0 5 0000000000</span>
+        </div>
+      </div>
+      <div class="compare-arrow">→</div>
+      <div class="compare-col good">
+        <div class="compare-label">✅ Markdown</div>
+        <div class="compare-content">
+          <span class="md-h1"># Introduction</span>
+          <span class="md-h2">## Background</span>
+          <span>Protein–ligand interactions</span>
+          <span>play a central role in</span>
+          <span>molecular recognition...</span>
+          <span>&nbsp;</span>
+        </div>
+      </div>
+    </div>
+
+    <a href="#converter" class="landing-cta">Try it now ↓</a>
+  </div>
+</section>
+
   <!-- HERO -->
   <section class="hero">
     <h1>Make your documents<br><span class="accent">AI-ready</span></h1>
@@ -48,10 +85,10 @@
   <!-- MAIN AREA -->
   <main class="main">
 
-    <!-- DROP ZONE -->
-    <div class="drop-zone" id="dropZone">
-      <div class="drop-inner">
-        <div class="drop-icon-wrap">
+   <!-- DROP ZONE -->
+<div class="drop-zone" id="converter">
+  <div class="drop-inner">
+    <div class="drop-icon-wrap">
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
         </div>
         <p class="drop-label">Drop your files here, or <label for="fileInput" class="browse-link">browse</label></p>

@@ -554,3 +554,108 @@ body.dark .footer { background: var(--bg); }
   color: var(--text-mid);
   font-weight: 500;
 }
+/* ─── LANDING ───────────────────────────────────────── */
+.landing {
+  padding: 4rem 32px 2rem;
+  text-align: center;
+}
+
+.landing-inner {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.landing-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 4px 12px;
+  border-radius: 20px;
+  background: var(--teal-light);
+  color: var(--teal-dark);
+  margin-bottom: 1.25rem;
+  letter-spacing: 0.03em;
+}
+
+.landing-headline {
+  font-size: clamp(28px, 5vw, 46px);
+  font-weight: 300;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin-bottom: 1rem;
+}
+
+.landing-sub {
+  font-size: 16px;
+  color: var(--text-mid);
+  line-height: 1.7;
+  max-width: 520px;
+  margin: 0 auto 2rem;
+}
+
+.landing-compare {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.compare-col {
+  flex: 1;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.compare-label {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.compare-col.bad .compare-label { background: #FCEBEB; color: #A32D2D; }
+.compare-col.good .compare-label { background: var(--teal-light); color: var(--teal-dark); }
+
+.compare-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 14px;
+  font-family: var(--mono);
+  font-size: 11px;
+  background: var(--surface);
+  min-height: 110px;
+}
+
+.compare-col.bad .compare-content { color: var(--text-soft); }
+.compare-col.good .compare-content { color: var(--text-mid); }
+
+.md-h1 { color: var(--text); font-weight: 500; font-size: 12px; }
+.md-h2 { color: var(--text-mid); font-size: 11px; }
+
+.compare-arrow {
+  font-size: 24px;
+  color: var(--teal);
+  flex-shrink: 0;
+}
+
+.landing-cta {
+  display: inline-block;
+  background: var(--teal);
+  color: white;
+  padding: 12px 28px;
+  border-radius: var(--radius);
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+
+.landing-cta:hover { background: var(--teal-dark); }
+
+/* Dark mode landing */
+body.dark .compare-content { background: var(--surface); }
+body.dark .landing-badge { background: #0F2E22; }
