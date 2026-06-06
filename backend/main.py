@@ -11,6 +11,19 @@ from converters.pdf_converter import convert_pdf
 from converters.docx_converter import convert_docx
 from converters.pptx_converter import convert_pptx
 
+# Magic bytes for file validation
+MAGIC_BYTES = {
+    ".pdf":  b"%PDF",
+    ".docx": b"PK\x03\x04",
+    ".pptx": b"PK\x03\x04",
+}
+
+def validate_file_signature(contents: bytes, ext: str) -> bool:
+    expected = MAGIC_BYTES.get(ext)
+    if not expected:
+        return False
+    return contents.startswith(expected)
+
 limiter = Limiter(key_func=get_remote_address)
 app = FastAPI(title="MarkReady API")
 app.state.limiter = limiter
@@ -61,6 +74,8 @@ async def convert(request: Request, file: UploadFile = File(...)):
     contents = await file.read()
     if len(contents) > MAX_SIZE:
         raise HTTPException(status_code=413, detail="File too large. Maximum size is 20MB.")
+    if not validate_file_signature(contents, ext):
+        raise HTTPException(status_code=400, detail="File content does not match its extension. Please upload a valid file.")
 
     with tempfile.NamedTemporaryFile(delete=False, suffix=ext) as tmp:
         tmp.write(contents)
