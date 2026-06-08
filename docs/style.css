@@ -556,7 +556,7 @@ body.dark .footer { background: var(--bg); }
 }
 /* ─── LANDING ───────────────────────────────────────── */
 .landing {
-  padding: 4rem 32px 2rem;
+  padding: 2rem 32px 2rem;
   text-align: center;
 }
 
@@ -567,9 +567,9 @@ body.dark .footer { background: var(--bg); }
 
 .landing-badge {
   display: inline-block;
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 500;
-  padding: 4px 12px;
+  padding: 5px 14px;
   border-radius: 20px;
   background: var(--teal-light);
   color: var(--teal-dark);
@@ -590,7 +590,7 @@ body.dark .footer { background: var(--bg); }
   font-size: 16px;
   color: var(--text-mid);
   line-height: 1.7;
-  max-width: 520px;
+  max-width: 420px;
   margin: 0 auto 2rem;
 }
 
